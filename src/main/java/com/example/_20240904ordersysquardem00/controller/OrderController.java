@@ -1,7 +1,7 @@
 package com.example._20240904ordersysquardem00.controller;
 
+import com.example._20240904ordersysquardem00.model.Order; // 使用自定义的 Order 类
 import com.example._20240904ordersysquardem00.service.OrderService;
-import jakarta.persistence.criteria.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
