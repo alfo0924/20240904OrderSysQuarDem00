@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>外送系統 - 菜單列表</title>
-    <link rel="stylesheet" href="style.css">
+    <title>菜單列表</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header>
@@ -20,29 +20,34 @@
             <li><a href="/menus">菜單</a></li>
             <li><a href="/food-items">菜品</a></li>
             <li><a href="/reviews">評價</a></li>
-            <!-- 其他導航項目 -->
         </ul>
     </nav>
 </header>
 <main>
-    <h2>菜單列表</h2>
+    <a href="/menus/new" class="button">新增菜單</a>
     <table>
         <thead>
         <tr>
-            <th>菜單ID</th>
-            <th>餐廳ID</th>
-            <th>菜單名稱</th>
-            <th>菜單描述</th>
+            <th>ID</th>
+            <th>餐廳</th>
+            <th>名稱</th>
+            <th>描述</th>
             <th>狀態</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="menu : ${menus}">
             <td th:text="${menu.menuId}"></td>
-            <td th:text="${menu.restaurant.restaurantId}"></td>
+            <td th:text="${menu.restaurant.restaurantName}"></td>
             <td th:text="${menu.menuName}"></td>
             <td th:text="${menu.menuDescribe}"></td>
             <td th:text="${menu.menuStatus}"></td>
+            <td>
+                <a th:href="@{/menus/{id}(id=${menu.menuId})}" class="button">查看</a>
+                <a th:href="@{/menus/{id}/edit(id=${menu.menuId})}" class="button">編輯</a>
+                <a th:href="@{/menus/{id}/delete(id=${menu.menuId})}" class="button" onclick="return confirm('確定要刪除嗎？')">刪除</a>
+            </td>
         </tr>
         </tbody>
     </table>

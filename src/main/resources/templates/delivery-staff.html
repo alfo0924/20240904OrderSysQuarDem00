@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>外送系統 - 外送員列表</title>
-    <link rel="stylesheet" href="style.css">
+    <title>外送員列表</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header>
@@ -20,12 +20,11 @@
             <li><a href="/menus">菜單</a></li>
             <li><a href="/food-items">菜品</a></li>
             <li><a href="/reviews">評價</a></li>
-            <!-- 其他導航項目 -->
         </ul>
     </nav>
 </header>
 <main>
-    <h2>外送員列表</h2>
+    <a href="/delivery-staff/new" class="button">新增外送員</a>
     <table>
         <thead>
         <tr>
@@ -34,6 +33,7 @@
             <th>電話</th>
             <th>交通工具</th>
             <th>狀態</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -43,6 +43,11 @@
             <td th:text="${staff.deliveryPhone}"></td>
             <td th:text="${staff.deliveryVehicle}"></td>
             <td th:text="${staff.deliveryStatus}"></td>
+            <td>
+                <a th:href="@{/delivery-staff/{id}(id=${staff.deliveryId})}" class="button">查看</a>
+                <a th:href="@{/delivery-staff/{id}/edit(id=${staff.deliveryId})}" class="button">編輯</a>
+                <a th:href="@{/delivery-staff/{id}/delete(id=${staff.deliveryId})}" class="button" onclick="return confirm('確定要刪除嗎？')">刪除</a>
+            </td>
         </tr>
         </tbody>
     </table>

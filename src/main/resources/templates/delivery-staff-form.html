@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${deliveryStaff.deliveryId == null ? '新增外送員' : '編輯外送員'}"></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1 th:text="${deliveryStaff.deliveryId == null ? '新增外送員' : '編輯外送員'}"></h1>
+    <nav>
+        <ul>
+            <li><a href="/">主頁</a></li>
+            <li><a href="/customers">客戶</a></li>
+            <li><a href="/restaurants">餐廳</a></li>
+            <li><a href="/orders">訂單</a></li>
+            <li><a href="/order-items">訂單列表</a></li>
+            <li><a href="/delivery-staff">外送員</a></li>
+            <li><a href="/menus">菜單</a></li>
+            <li><a href="/food-items">菜品</a></li>
+            <li><a href="/reviews">評價</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <form th:action="${deliveryStaff.deliveryId == null ? '/delivery-staff' : '/delivery-staff/' + deliveryStaff.deliveryId}" method="post" th:object="${deliveryStaff}">
+        <input type="hidden" th:field="*{deliveryId}" />
+        <div>
+            <label for="deliveryName">姓名:</label>
+            <input type="text" id="deliveryName" th:field="*{deliveryName}" required />
+        </div>
+        <div>
+            <label for="deliveryPhone">電話:</label>
+            <input type="text" id="deliveryPhone" th:field="*{deliveryPhone}" required />
+        </div>
+        <div>
+            <label for="deliveryVehicle">交通工具:</label>
+            <input type="text" id="deliveryVehicle" th:field="*{deliveryVehicle}" required />
+        </div>
+        <div>
+            <label for="deliveryStatus">狀態:</label>
+            <select id="deliveryStatus" th:field="*{deliveryStatus}">
+                <option value="空閒">空閒</option>
+                <option value="配送中">配送中</option>
+                <option value="休息">休息</option>
+            </select>
+        </div>
+        <button type="submit">保存</button>
+        <a href="/delivery-staff" class="button">取消</a>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${menu.menuId == null ? '新增菜單' : '編輯菜單'}"></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1 th:text="${menu.menuId == null ? '新增菜單' : '編輯菜單'}"></h1>
+    <nav>
+        <ul>
+            <li><a href="/">主頁</a></li>
+            <li><a href="/customers">客戶</a></li>
+            <li><a href="/restaurants">餐廳</a></li>
+            <li><a href="/orders">訂單</a></li>
+            <li><a href="/order-items">訂單列表</a></li>
+            <li><a href="/delivery-staff">外送員</a></li>
+            <li><a href="/menus">菜單</a></li>
+            <li><a href="/food-items">菜品</a></li>
+            <li><a href="/reviews">評價</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <form th:action="${menu.menuId == null ? '/menus' : '/menus/' + menu.menuId}" method="post" th:object="${menu}">
+        <input type="hidden" th:field="*{menuId}" />
+        <div>
+            <label for="restaurant">餐廳:</label>
+            <select id="restaurant" th:field="*{restaurant.restaurantId}" required>
+                <option value="">選擇餐廳</option>
+                <option th:each="restaurant : ${restaurants}" th:value="${restaurant.restaurantId}" th:text="${restaurant.restaurantName}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="menuName">名稱:</label>
+            <input type="text" id="menuName" th:field="*{menuName}" required />
+        </div>
+        <div>
+            <label for="menuDescribe">描述:</label>
+            <textarea id="menuDescribe" th:field="*{menuDescribe}" required></textarea>
+        </div>
+        <div>
+            <label for="menuStatus">狀態:</label>
+            <select id="menuStatus" th:field="*{menuStatus}">
+                <option value="可用">可用</option>
+                <option value="不可用">不可用</option>
+            </select>
+        </div>
+        <button type="submit">保存</button>
+        <a href="/menus" class="button">取消</a>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
+</body>
+</html>
