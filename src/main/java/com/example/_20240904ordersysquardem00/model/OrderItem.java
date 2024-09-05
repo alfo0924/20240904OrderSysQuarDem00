@@ -1,10 +1,13 @@
 package com.example._20240904ordersysquardem00.model;
 
 import jakarta.persistence.*;
-
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "order_items")
+@Getter
+@Setter
 public class OrderItem {
     @Id
     private String orderItemsId;
@@ -19,7 +22,4 @@ public class OrderItem {
 
     private Integer counts;
     private Double amount;
-
-    // Getters and setters
-    // ... (省略getter和setter方法，與之前的類似)
 }

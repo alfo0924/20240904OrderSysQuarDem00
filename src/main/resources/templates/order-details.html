@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>訂單詳情</title>
-<link rel="stylesheet" href="/details.css">
+    <link rel="stylesheet" href="/details.css">
 </head>
 <body>
 <header>
@@ -19,7 +19,7 @@
         <p><strong>訂單狀態:</strong> <span th:text="${order.orderStatus}"></span></p>
 
         <h2>訂單項目</h2>
-        <table>
+        <table th:if="${order.orderItems != null and !order.orderItems.empty}">
             <thead>
             <tr>
                 <th>菜品名稱</th>
@@ -37,6 +37,7 @@
             </tr>
             </tbody>
         </table>
+        <p th:if="${order.orderItems == null or order.orderItems.empty}">沒有訂單項目</p>
     </div>
     <div th:if="${order == null}">
         <p>未找到該訂單</p>

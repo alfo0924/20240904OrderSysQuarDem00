@@ -1,11 +1,16 @@
 package com.example._20240904ordersysquardem00.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "orders")
+@Getter
+@Setter
 public class Order {
     @Id
     private String orderId;
@@ -14,63 +19,6 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
-    public DeliveryStaff getDeliveryStaff() {
-        return deliveryStaff;
-    }
-
-    public void setDeliveryStaff(DeliveryStaff deliveryStaff) {
-        this.deliveryStaff = deliveryStaff;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public Double getOrderPrice() {
-        return orderPrice;
-    }
-
-    public void setOrderPrice(Double orderPrice) {
-        this.orderPrice = orderPrice;
-    }
-
-    public String getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
-    private List<OrderItem> orderItems;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
@@ -83,5 +31,6 @@ public class Order {
     private Double orderPrice;
     private String orderStatus;
 
-    // Getters and setters
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    private List<OrderItem> orderItems;
 }

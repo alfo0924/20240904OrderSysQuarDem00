@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/orders")
@@ -27,8 +28,13 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public String getOrder(@PathVariable String id, Model model) {
-        Order order = orderService.getOrderById(id).orElse(null);
-        model.addAttribute("order", order);
-        return "order-details";
+        Optional<Order> orderOptional = orderService.getOrderById(id);
+        if (orderOptional.isPresent()) {
+            model.addAttribute("order", orderOptional.get());
+            return "order-details";
+        } else {
+            // Handle the case where the order is not found
+            return "order-not-found"; // Create this view or redirect as needed
+        }
     }
 }
