@@ -104,12 +104,25 @@ footer {
     flex-shrink: 0;
 }
 
+/* 链接样式 */
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #e6e6e6;
+    text-decoration: underline;
+    background: #404040;
+}
+
 /* 按钮样式 */
-.button, button, input[type="submit"] {
+.button, button, input[type="submit"], a.button {
     display: inline-block;
     padding: 10px 15px;
     margin: 10px 0;
-    background-color: #3498db;
+    background-color: #2f374a;
     color: #ffffff;
     text-decoration: none;
     border: none;
@@ -118,8 +131,9 @@ footer {
     transition: background-color 0.3s;
 }
 
-.button:hover, button:hover, input[type="submit"]:hover {
-    background-color: #2980b9;
+.button:hover, button:hover, input[type="submit"]:hover, a.button:hover {
+    background-color: #1c4c6c;
+    text-decoration: none;
 }
 
 .back-button {
@@ -165,5 +179,11 @@ input[type="text"], input[type="number"] {
 
     th, td {
         padding: 8px;
+    }
+
+    /* 在小屏幕上调整链接样式 */
+    a {
+        display: inline-block;
+        padding: 5px 0;
     }
 }
