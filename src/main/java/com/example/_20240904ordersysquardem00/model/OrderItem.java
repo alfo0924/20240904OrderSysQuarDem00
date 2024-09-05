@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 public class OrderItem {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String orderItemsId;
 
     @ManyToOne

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>訂單項目詳情</title>
     <link rel="stylesheet" href="/style.css">
 </head>
@@ -24,15 +26,15 @@
 <main>
     <div th:if="${orderItem != null}">
         <p><strong>訂單項目 ID:</strong> <span th:text="${orderItem.orderItemsId}"></span></p>
-        <p><strong>訂單 ID:</strong> <span th:text="${orderItem.order.orderId}"></span></p>
-        <p><strong>菜品 ID:</strong> <span th:text="${orderItem.foodItem.itemsId}"></span></p>
-        <p><strong>菜品名稱:</strong> <span th:text="${orderItem.foodItem.foodName}"></span></p>
+        <p><strong>訂單:</strong> <span th:text="${orderItem.order.orderId}"></span></p>
+        <p><strong>菜品:</strong> <span th:text="${orderItem.foodItem.foodName}"></span></p>
         <p><strong>數量:</strong> <span th:text="${orderItem.counts}"></span></p>
         <p><strong>金額:</strong> <span th:text="${orderItem.amount}"></span></p>
     </div>
     <div th:if="${orderItem == null}">
         <p>未找到該訂單項目</p>
     </div>
+    <a href="/order-items" class="button">返回訂單項目列表</a>
 </main>
 <footer>
     <p>&copy; 2024 外送系統. All rights reserved.</p>

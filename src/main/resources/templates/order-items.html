@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>訂單項目列表</title>
     <link rel="stylesheet" href="/style.css">
 </head>
@@ -22,12 +24,13 @@
     </nav>
 </header>
 <main>
+    <a href="/order-items/new" class="button">新增訂單項目</a>
     <table>
         <thead>
         <tr>
             <th>ID</th>
-            <th>訂單ID</th>
-            <th>菜品ID</th>
+            <th>訂單</th>
+            <th>菜品</th>
             <th>數量</th>
             <th>金額</th>
             <th>操作</th>
@@ -37,18 +40,17 @@
         <tr th:each="item : ${orderItems}">
             <td th:text="${item.orderItemsId}"></td>
             <td th:text="${item.order.orderId}"></td>
-            <td th:text="${item.foodItem.itemsId}"></td>
+            <td th:text="${item.foodItem.foodName}"></td>
             <td th:text="${item.counts}"></td>
             <td th:text="${item.amount}"></td>
             <td>
-                <a th:href="@{/order-items/{id}(id=${item.orderItemsId})}">詳情</a>
-                <a th:href="@{/order-items/{id}/edit(id=${item.orderItemsId})}">編輯</a>
-                <a th:href="@{/order-items/{id}/delete(id=${item.orderItemsId})}" onclick="return confirm('確定要刪除嗎？')">刪除</a>
+                <a th:href="@{/order-items/{id}(id=${item.orderItemsId})}" class="button">查看</a>
+                <a th:href="@{/order-items/{id}/edit(id=${item.orderItemsId})}" class="button">編輯</a>
+                <a th:href="@{/order-items/{id}/delete(id=${item.orderItemsId})}" class="button" onclick="return confirm('確定要刪除嗎？')">刪除</a>
             </td>
         </tr>
         </tbody>
     </table>
-    <a href="javascript:history.back()" class="button back-button">返回上一頁</a>
 </main>
 <footer>
     <p>&copy; 2024 外送系統. All rights reserved.</p>
