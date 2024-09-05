@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${customer.customerId == null ? '新增客戶' : '編輯客戶'}">外送系統 - 客戶表單</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1 th:text="${customer.customerId == null ? '新增客戶' : '編輯客戶'}"></h1>
+    <nav>
+        <ul>
+            <li><a href="/">主頁</a></li>
+            <li><a href="/customers">客戶</a></li>
+            <li><a href="/restaurants">餐廳</a></li>
+            <li><a href="/orders">訂單</a></li>
+            <li><a href="/order-items">訂單列表</a></li>
+            <li><a href="/delivery-staff">外送員</a></li>
+            <li><a href="/menus">菜單</a></li>
+            <li><a href="/food-items">菜品</a></li>
+            <li><a href="/reviews">評價</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <form th:action="${customer.customerId == null ? '/customers' : '/customers/' + customer.customerId}" method="post" th:object="${customer}">
+        <input type="hidden" th:field="*{customerId}" />
+        <div>
+            <label for="customerName">姓名:</label>
+            <input type="text" id="customerName" th:field="*{customerName}" required />
+        </div>
+        <div>
+            <label for="customerPhoneNumber">電話:</label>
+            <input type="text" id="customerPhoneNumber" th:field="*{customerPhoneNumber}" required />
+        </div>
+        <div>
+            <label for="customerEmail">電子郵件:</label>
+            <input type="email" id="customerEmail" th:field="*{customerEmail}" required />
+        </div>
+        <div>
+            <label for="customerAddress">地址:</label>
+            <input type="text" id="customerAddress" th:field="*{customerAddress}" required />
+        </div>
+        <button type="submit">保存</button>
+
+        <a href="/customers" class="button">取消</a>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
+</body>
+</html>

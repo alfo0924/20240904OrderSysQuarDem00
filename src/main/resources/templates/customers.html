@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +20,12 @@
             <li><a href="/menus">菜單</a></li>
             <li><a href="/food-items">菜品</a></li>
             <li><a href="/reviews">評價</a></li>
-            <!-- 其他導航項目 -->
         </ul>
     </nav>
 </header>
 <main>
     <h2>客戶列表</h2>
+    <a href="/customers/new" class="button">新增客戶</a>
     <table>
         <thead>
         <tr>
@@ -34,6 +34,7 @@
             <th>電話</th>
             <th>電子郵件</th>
             <th>地址</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -43,6 +44,11 @@
             <td th:text="${customer.customerPhoneNumber}"></td>
             <td th:text="${customer.customerEmail}"></td>
             <td th:text="${customer.customerAddress}"></td>
+            <td>
+                <a th:href="@{/customers/{id}(id=${customer.customerId})}" class="button">查看</a>
+                <a th:href="@{/customers/{id}/edit(id=${customer.customerId})}" class="button">編輯</a>
+                <a th:href="@{/customers/{id}/delete(id=${customer.customerId})}" class="button" onclick="return confirm('確定要刪除嗎？')">刪除</a>
+            </td>
         </tr>
         </tbody>
     </table>

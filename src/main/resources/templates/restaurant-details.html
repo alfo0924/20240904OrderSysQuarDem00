@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>餐廳詳情</title>
-    <link rel="stylesheet" href="/details.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header>
     <h1>餐廳詳情</h1>
+    <nav>
+        <ul>
+            <li><a href="/">主頁</a></li>
+            <li><a href="/restaurants">餐廳</a></li>
+            <!-- 其他導航項目 -->
+        </ul>
+    </nav>
 </header>
 <main>
     <div th:if="${restaurant != null}">
@@ -19,8 +28,10 @@
     <div th:if="${restaurant == null}">
         <p>未找到該餐廳</p>
     </div>
-    <a href="/restaurants" class="back-button">返回餐廳列表</a>
-    <a href="javascript:history.back()" class="back-button">返回上一頁</a>
+    <a href="/restaurants" class="button">返回餐廳列表</a>
 </main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
 </body>
 </html>

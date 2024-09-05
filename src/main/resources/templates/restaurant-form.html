@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${restaurant.restaurantId == null ? '新增餐廳' : '編輯餐廳'}"></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1 th:text="${restaurant.restaurantId == null ? '新增餐廳' : '編輯餐廳'}"></h1>
+    <nav>
+        <ul>
+            <li><a href="/">主頁</a></li>
+            <li><a href="/restaurants">餐廳</a></li>
+            <!-- 其他導航項目 -->
+        </ul>
+    </nav>
+</header>
+<main>
+    <form th:action="${restaurant.restaurantId == null ? '/restaurants' : '/restaurants/' + restaurant.restaurantId}" method="post" th:object="${restaurant}">
+        <input type="hidden" th:field="*{restaurantId}" />
+        <div>
+            <label for="restaurantName">名稱:</label>
+            <input type="text" id="restaurantName" th:field="*{restaurantName}" required />
+        </div>
+        <div>
+            <label for="restaurantAddress">地址:</label>
+            <input type="text" id="restaurantAddress" th:field="*{restaurantAddress}" required />
+        </div>
+        <div>
+            <label for="restaurantPhone">電話:</label>
+            <input type="text" id="restaurantPhone" th:field="*{restaurantPhone}" required />
+        </div>
+        <div>
+            <label for="restaurantType">類型:</label>
+            <input type="text" id="restaurantType" th:field="*{restaurantType}" required />
+        </div>
+        <button type="submit">保存</button>
+        <a href="/restaurants" class="button">取消</a>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
+</body>
+</html>
