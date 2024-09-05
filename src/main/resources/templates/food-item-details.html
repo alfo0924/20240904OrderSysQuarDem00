@@ -1,26 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>菜品詳情</title>
-    <link rel="stylesheet" href="/details.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header>
     <h1>菜品詳情</h1>
+    <nav>
+        <ul>
+            <li><a href="/">主頁</a></li>
+            <li><a href="/customers">客戶</a></li>
+            <li><a href="/restaurants">餐廳</a></li>
+            <li><a href="/orders">訂單</a></li>
+            <li><a href="/order-items">訂單列表</a></li>
+            <li><a href="/delivery-staff">外送員</a></li>
+            <li><a href="/menus">菜單</a></li>
+            <li><a href="/food-items">菜品</a></li>
+            <li><a href="/reviews">評價</a></li>
+        </ul>
+    </nav>
 </header>
 <main>
     <div th:if="${foodItem != null}">
         <p><strong>菜品 ID:</strong> <span th:text="${foodItem.itemsId}"></span></p>
-        <p><strong>菜單 ID:</strong> <span th:text="${foodItem.menu.menuId}"></span></p>
-        <p><strong>菜品名稱:</strong> <span th:text="${foodItem.foodName}"></span></p>
+        <p><strong>菜單:</strong> <span th:text="${foodItem.menu.menuName}"></span></p>
+        <p><strong>名稱:</strong> <span th:text="${foodItem.foodName}"></span></p>
         <p><strong>價格:</strong> <span th:text="${foodItem.foodPrice}"></span></p>
         <p><strong>狀態:</strong> <span th:text="${foodItem.foodStatus}"></span></p>
     </div>
     <div th:if="${foodItem == null}">
         <p>未找到該菜品</p>
     </div>
-    <a href="/food-items" class="back-button">返回菜品列表</a>
-    <a href="javascript:history.back()" class="back-button">返回上一頁</a>
+    <a href="/food-items" class="button">返回菜品列表</a>
 </main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
 </body>
 </html>

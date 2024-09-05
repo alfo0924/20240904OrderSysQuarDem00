@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${foodItem.itemsId == null ? '新增菜品' : '編輯菜品'}"></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1 th:text="${foodItem.itemsId == null ? '新增菜品' : '編輯菜品'}"></h1>
+    <nav>
+        <ul>
+            <li><a href="/">主頁</a></li>
+            <li><a href="/customers">客戶</a></li>
+            <li><a href="/restaurants">餐廳</a></li>
+            <li><a href="/orders">訂單</a></li>
+            <li><a href="/order-items">訂單列表</a></li>
+            <li><a href="/delivery-staff">外送員</a></li>
+            <li><a href="/menus">菜單</a></li>
+            <li><a href="/food-items">菜品</a></li>
+            <li><a href="/reviews">評價</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <form th:action="${foodItem.itemsId == null ? '/food-items' : '/food-items/' + foodItem.itemsId}" method="post" th:object="${foodItem}">
+        <input type="hidden" th:field="*{itemsId}" />
+        <div>
+            <label for="menu">菜單:</label>
+            <select id="menu" th:field="*{menu.menuId}" required>
+                <option value="">選擇菜單</option>
+                <option th:each="menu : ${menus}" th:value="${menu.menuId}" th:text="${menu.menuName}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="foodName">名稱:</label>
+            <input type="text" id="foodName" th:field="*{foodName}" required />
+        </div>
+        <div>
+            <label for="foodPrice">價格:</label>
+            <input type="number" id="foodPrice" th:field="*{foodPrice}" step="0.01" required />
+        </div>
+        <div>
+            <label for="foodStatus">狀態:</label>
+            <select id="foodStatus" th:field="*{foodStatus}">
+                <option value="可用">可用</option>
+                <option value="不可用">不可用</option>
+            </select>
+        </div>
+        <button type="submit">保存</button>
+        <a href="/food-items" class="button">取消</a>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
+</body>
+</html>
