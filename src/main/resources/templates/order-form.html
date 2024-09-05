@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${order.orderId == null ? '新增訂單' : '編輯訂單'}"></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1 th:text="${order.orderId == null ? '新增訂單' : '編輯訂單'}"></h1>
+    <nav>
+        <ul>
+            <li><a href="/">主頁</a></li>
+            <li><a href="/orders">訂單</a></li>
+            <!-- 其他導航項目 -->
+        </ul>
+    </nav>
+</header>
+<main>
+    <form th:action="${order.orderId == null ? '/orders' : '/orders/' + order.orderId}" method="post" th:object="${order}">
+        <input type="hidden" th:field="*{orderId}" />
+        <div>
+            <label for="customer">客戶:</label>
+            <select id="customer" th:field="*{customer.customerId}" required>
+                <option value="">選擇客戶</option>
+                <!-- 這裡需要從後端傳遞客戶列表 -->
+                <option th:each="customer : ${customers}" th:value="${customer.customerId}" th:text="${customer.customerName}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="restaurant">餐廳:</label>
+            <select id="restaurant" th:field="*{restaurant.restaurantId}" required>
+                <option value="">選擇餐廳</option>
+                <!-- 這裡需要從後端傳遞餐廳列表 -->
+                <option th:each="restaurant : ${restaurants}" th:value="${restaurant.restaurantId}" th:text="${restaurant.restaurantName}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="deliveryStaff">外送員:</label>
+            <select id="deliveryStaff" th:field="*{deliveryStaff.deliveryId}" required>
+                <option value="">選擇外送員</option>
+                <!-- 這裡需要從後端傳遞外送員列表 -->
+                <option th:each="staff : ${deliveryStaff}" th:value="${staff.deliveryId}" th:text="${staff.deliveryName}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="orderDate">訂單日期:</label>
+            <input type="date" id="orderDate" th:field="*{orderDate}" required />
+        </div>
+        <div>
+            <label for="orderPrice">訂單金額:</label>
+            <input type="number" id="orderPrice" th:field="*{orderPrice}" step="0.01" required />
+        </div>
+        <div>
+            <label for="orderStatus">訂單狀態:</label>
+            <select id="orderStatus" th:field="*{orderStatus}" required>
+                <option value="待處理">待處理</option>
+                <option value="處理中">處理中</option>
+                <option value="已完成">已完成</option>
+                <option value="已取消">已取消</option>
+            </select>
+        </div>
+        <button type="submit">保存</button>
+        <a href="/orders" class="button">取消</a>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
+</body>
+</html>

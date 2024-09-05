@@ -31,6 +31,6 @@ public class Order {
     private Double orderPrice;
     private String orderStatus;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> orderItems;
 }

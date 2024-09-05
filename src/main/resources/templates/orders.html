@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>外送系統 - 訂單列表</title>
-    <link rel="stylesheet" href="style.css">
+    <title>訂單列表</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header>
@@ -12,41 +12,40 @@
     <nav>
         <ul>
             <li><a href="/">主頁</a></li>
-            <li><a href="/customers">客戶</a></li>
-            <li><a href="/restaurants">餐廳</a></li>
             <li><a href="/orders">訂單</a></li>
-            <li><a href="/order-items">訂單列表</a></li>
-            <li><a href="/delivery-staff">外送員</a></li>
-            <li><a href="/menus">菜單</a></li>
-            <li><a href="/food-items">菜品</a></li>
-            <li><a href="/reviews">評價</a></li>
             <!-- 其他導航項目 -->
         </ul>
     </nav>
 </header>
 <main>
-    <h2>訂單列表</h2>
+    <a href="/orders/new" class="button">新增訂單</a>
     <table>
         <thead>
         <tr>
             <th>訂單ID</th>
-            <th>客戶ID</th>
-            <th>餐廳ID</th>
-            <th>外送員ID</th>
+            <th>客戶</th>
+            <th>餐廳</th>
+            <th>外送員</th>
             <th>訂單日期</th>
             <th>訂單金額</th>
             <th>訂單狀態</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="order : ${orders}">
             <td th:text="${order.orderId}"></td>
-            <td th:text="${order.customer.customerId}"></td>
-            <td th:text="${order.restaurant.restaurantId}"></td>
-            <td th:text="${order.deliveryStaff.deliveryId}"></td>
-            <td th:text="${order.orderDate}"></td>
+            <td th:text="${order.customer.customerName}"></td>
+            <td th:text="${order.restaurant.restaurantName}"></td>
+            <td th:text="${order.deliveryStaff.deliveryName}"></td>
+            <td th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd')}"></td>
             <td th:text="${order.orderPrice}"></td>
             <td th:text="${order.orderStatus}"></td>
+            <td>
+                <a th:href="@{/orders/{id}(id=${order.orderId})}" class="button">查看</a>
+                <a th:href="@{/orders/{id}/edit(id=${order.orderId})}" class="button">編輯</a>
+                <a th:href="@{/orders/{id}/delete(id=${order.orderId})}" class="button" onclick="return confirm('確定要刪除嗎？')">刪除</a>
+            </td>
         </tr>
         </tbody>
     </table>

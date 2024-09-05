@@ -1,6 +1,6 @@
 package com.example._20240904ordersysquardem00.service;
 
-import com.example._20240904ordersysquardem00.model.Order; // 使用自定义的 Order 类
+import com.example._20240904ordersysquardem00.model.Order;
 import com.example._20240904ordersysquardem00.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
