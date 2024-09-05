@@ -1,27 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>評論詳情</title>
-    <link rel="stylesheet" href="/details.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>評價詳情</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header>
-    <h1>評論詳情</h1>
+    <h1>評價詳情</h1>
+    <nav>
+        <ul>
+            <li><a href="/">主頁</a></li>
+            <li><a href="/customers">客戶</a></li>
+            <li><a href="/restaurants">餐廳</a></li>
+            <li><a href="/orders">訂單</a></li>
+            <li><a href="/order-items">訂單列表</a></li>
+            <li><a href="/delivery-staff">外送員</a></li>
+            <li><a href="/menus">菜單</a></li>
+            <li><a href="/food-items">菜品</a></li>
+            <li><a href="/reviews">評價</a></li>
+        </ul>
+    </nav>
 </header>
 <main>
     <div th:if="${review != null}">
-        <p><strong>評論 ID:</strong> <span th:text="${review.reviewId}"></span></p>
-        <p><strong>訂單 ID:</strong> <span th:text="${review.order.orderId}"></span></p>
+        <p><strong>評價 ID:</strong> <span th:text="${review.reviewId}"></span></p>
+        <p><strong>訂單:</strong> <span th:text="${review.order.orderId}"></span></p>
         <p><strong>客戶:</strong> <span th:text="${review.customer.customerName}"></span></p>
         <p><strong>餐廳:</strong> <span th:text="${review.restaurant.restaurantName}"></span></p>
         <p><strong>外送員:</strong> <span th:text="${review.deliveryStaff.deliveryName}"></span></p>
-        <p><strong>評論內容:</strong> <span th:text="${review.comment}"></span></p>
+        <p><strong>評論:</strong> <span th:text="${review.comment}"></span></p>
     </div>
     <div th:if="${review == null}">
-        <p>未找到該評論</p>
+        <p>未找到該評價</p>
     </div>
-    <a href="/reviews">返回評論列表</a>
-    <a href="javascript:history.back()" class="back-button">返回上一頁</a>
+    <a href="/reviews" class="button">返回評價列表</a>
 </main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
 </body>
 </html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>外送系統 - 評價列表</title>
-    <link rel="stylesheet" href="style.css">
+    <title>評價列表</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header>
@@ -20,31 +20,36 @@
             <li><a href="/menus">菜單</a></li>
             <li><a href="/food-items">菜品</a></li>
             <li><a href="/reviews">評價</a></li>
-            <!-- 其他導航項目 -->
         </ul>
     </nav>
 </header>
 <main>
-    <h2>評價列表</h2>
+    <a href="/reviews/new" class="button">新增評價</a>
     <table>
         <thead>
         <tr>
-            <th>評價ID</th>
-            <th>訂單ID</th>
-            <th>客戶ID</th>
-            <th>餐廳ID</th>
-            <th>外送員ID</th>
+            <th>ID</th>
+            <th>訂單</th>
+            <th>客戶</th>
+            <th>餐廳</th>
+            <th>外送員</th>
             <th>評論</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="review : ${reviews}">
             <td th:text="${review.reviewId}"></td>
             <td th:text="${review.order.orderId}"></td>
-            <td th:text="${review.customer.customerId}"></td>
-            <td th:text="${review.restaurant.restaurantId}"></td>
-            <td th:text="${review.deliveryStaff.deliveryId}"></td>
-            <td th:text="${review.comment}"></td>
+            <td th:text="${review.customer.customerName}"></td>
+            <td th:text="${review.restaurant.restaurantName}"></td>
+            <td th:text="${review.deliveryStaff.deliveryName}"></td>
+            <td th:text="${#strings.abbreviate(review.comment, 50)}"></td>
+            <td>
+                <a th:href="@{/reviews/{id}(id=${review.reviewId})}" class="button">查看</a>
+                <a th:href="@{/reviews/{id}/edit(id=${review.reviewId})}" class="button">編輯</a>
+                <a th:href="@{/reviews/{id}/delete(id=${review.reviewId})}" class="button" onclick="return confirm('確定要刪除嗎？')">刪除</a>
+            </td>
         </tr>
         </tbody>
     </table>
