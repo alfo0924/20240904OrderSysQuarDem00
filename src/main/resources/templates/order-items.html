@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>訂單項目列表</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1>訂單項目列表</h1>
+    <nav>
+        <ul>
+            <li><a href="/">主頁</a></li>
+            <li><a href="/customers">客戶</a></li>
+            <li><a href="/restaurants">餐廳</a></li>
+            <li><a href="/orders">訂單</a></li>
+            <li><a href="/order-items">訂單列表</a></li>
+            <li><a href="/delivery-staff">外送員</a></li>
+            <li><a href="/menus">菜單</a></li>
+            <li><a href="/food-items">菜品</a></li>
+            <li><a href="/reviews">評價</a></li>
+
+        </ul>
+    </nav>
+</header>
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>訂單ID</th>
+            <th>菜品ID</th>
+            <th>數量</th>
+            <th>金額</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${orderItems}">
+            <td th:text="${item.orderItemsId}"></td>
+            <td th:text="${item.order.orderId}"></td>
+            <td th:text="${item.foodItem.itemsId}"></td>
+            <td th:text="${item.counts}"></td>
+            <td th:text="${item.amount}"></td>
+            <td>
+                <a th:href="@{/order-items/{id}(id=${item.orderItemsId})}">詳情</a>
+                <a th:href="@{/order-items/{id}/edit(id=${item.orderItemsId})}">編輯</a>
+                <a th:href="@{/order-items/{id}/delete(id=${item.orderItemsId})}" onclick="return confirm('確定要刪除嗎？')">刪除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
+</body>
+</html>
