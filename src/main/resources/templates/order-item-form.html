@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>訂單項目表單</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1 th:text="${orderItem.orderItemsId == null ? '新增訂單項目' : '編輯訂單項目'}"></h1>
+    <nav>
+        <ul>
+            <li><a href="/">首頁</a></li>
+            <li><a href="/order-items">返回列表</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <form th:action="${orderItem.orderItemsId == null ? '/order-items' : '/order-items/' + orderItem.orderItemsId}" method="post" th:object="${orderItem}">
+        <input type="hidden" th:field="*{orderItemsId}" />
+        <div>
+            <label for="orderId">訂單 ID:</label>
+            <input type="text" id="orderId" th:field="*{order.orderId}" required />
+        </div>
+        <div>
+            <label for="itemsId">菜品 ID:</label>
+            <input type="text" id="itemsId" th:field="*{foodItem.itemsId}" required />
+        </div>
+        <div>
+            <label for="counts">數量:</label>
+            <input type="number" id="counts" th:field="*{counts}" required />
+        </div>
+        <div>
+            <label for="amount">金額:</label>
+            <input type="number" step="0.01" id="amount" th:field="*{amount}" required />
+        </div>
+        <button type="submit">保存</button>
+        <a href="javascript:history.back()" class="back-button">返回上一頁</a>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
+</body>
+</html>
