@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>評論詳情</title>
+    <link rel="stylesheet" href="/details.css">
+</head>
+<body>
+<header>
+    <h1>評論詳情</h1>
+</header>
+<main>
+    <div th:if="${review != null}">
+        <p><strong>評論 ID:</strong> <span th:text="${review.reviewId}"></span></p>
+        <p><strong>訂單 ID:</strong> <span th:text="${review.order.orderId}"></span></p>
+        <p><strong>客戶:</strong> <span th:text="${review.customer.customerName}"></span></p>
+        <p><strong>餐廳:</strong> <span th:text="${review.restaurant.restaurantName}"></span></p>
+        <p><strong>外送員:</strong> <span th:text="${review.deliveryStaff.deliveryName}"></span></p>
+        <p><strong>評論內容:</strong> <span th:text="${review.comment}"></span></p>
+    </div>
+    <div th:if="${review == null}">
+        <p>未找到該評論</p>
+    </div>
+    <a href="/reviews">返回評論列表</a>
+    <a href="javascript:history.back()" class="back-button">返回上一頁</a>
+</main>
+</body>
+</html>

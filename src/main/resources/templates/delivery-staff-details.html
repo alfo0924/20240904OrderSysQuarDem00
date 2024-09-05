@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>外送員詳情</title>
+    <link rel="stylesheet" href="/details.css">
+</head>
+<body>
+<header>
+    <h1>外送員詳情</h1>
+</header>
+<main>
+    <div th:if="${deliveryStaff != null}">
+        <p><strong>外送員 ID:</strong> <span th:text="${deliveryStaff.deliveryId}"></span></p>
+        <p><strong>姓名:</strong> <span th:text="${deliveryStaff.deliveryName}"></span></p>
+        <p><strong>電話:</strong> <span th:text="${deliveryStaff.deliveryPhone}"></span></p>
+        <p><strong>交通工具:</strong> <span th:text="${deliveryStaff.deliveryVehicle}"></span></p>
+        <p><strong>狀態:</strong> <span th:text="${deliveryStaff.deliveryStatus}"></span></p>
+    </div>
+    <div th:if="${deliveryStaff == null}">
+        <p>未找到該外送員</p>
+    </div>
+    <a href="/delivery-staff" class="back-button">返回外送員列表</a>
+    <a href="javascript:history.back()" class="back-button">返回上一頁</a>
+</main>
+</body>
+</html>

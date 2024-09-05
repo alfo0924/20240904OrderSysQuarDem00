@@ -14,6 +14,54 @@ public class Review {
     @Id
     private String reviewId;
 
+    public String getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(String reviewId) {
+        this.reviewId = reviewId;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public DeliveryStaff getDeliveryStaff() {
+        return deliveryStaff;
+    }
+
+    public void setDeliveryStaff(DeliveryStaff deliveryStaff) {
+        this.deliveryStaff = deliveryStaff;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;

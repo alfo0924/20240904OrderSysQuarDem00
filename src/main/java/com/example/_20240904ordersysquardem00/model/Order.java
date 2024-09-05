@@ -2,6 +2,7 @@ package com.example._20240904ordersysquardem00.model;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -68,7 +69,8 @@ public class Order {
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
-
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    private List<OrderItem> orderItems;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>菜單詳情</title>
+<link rel="stylesheet" href="/details.css">
+</head>
+<body>
+<header>
+    <h1>菜單詳情</h1>
+</header>
+<main>
+    <div th:if="${menu != null}">
+        <p><strong>菜單 ID:</strong> <span th:text="${menu.menuId}"></span></p>
+        <p><strong>餐廳 ID:</strong> <span th:text="${menu.restaurant.restaurantId}"></span></p>
+        <p><strong>菜單名稱:</strong> <span th:text="${menu.menuName}"></span></p>
+        <p><strong>菜單描述:</strong> <span th:text="${menu.menuDescribe}"></span></p>
+        <p><strong>狀態:</strong> <span th:text="${menu.menuStatus}"></span></p>
+    </div>
+    <div th:if="${menu == null}">
+        <p>未找到該菜單</p>
+    </div>
+    <a href="/menus" class="back-button">返回菜單列表</a>
+    <a href="javascript:history.back()" class="back-button">返回上一頁</a>
+</main>
+</body>
+</html>

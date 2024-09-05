@@ -22,7 +22,7 @@ public class RestaurantController {
     public String listRestaurants(Model model) {
         List<Restaurant> restaurants = restaurantService.getAllRestaurants();
         model.addAttribute("restaurants", restaurants);
-        return "restaurants";
+        return "restaurant";
     }
 
     @GetMapping("/{id}")
