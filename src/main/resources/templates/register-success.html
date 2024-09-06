@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>外送系統 - 註冊成功</title>
     <style th:replace="~{fragmentsStyle :: loginStyle }" ></style>
-    <meta http-equiv="refresh" content="5;url=/login" />
+    <meta http-equiv="refresh" content="5;url=/" />
 </head>
 <body>
 <header>
@@ -14,8 +14,8 @@
 <main>
     <h2>註冊成功</h2>
     <div class="success-message">
-        <p th:text="${message}">註冊成功！<span id="countdown">5</span>秒後將自動跳轉到登入頁面。</p>
-        <p>如果沒有自動跳轉，請<a href="/login">點擊這裡</a>。</p>
+        <p><span th:text="${message}">註冊成功！</span><span id="countdown"></span>秒後將自動跳轉到登入頁面。</p>
+        <p>如果沒有自動跳轉，請<a href="/">點擊這裡</a>。</p>
     </div>
 </main>
 <footer>
@@ -36,7 +36,7 @@
     updateCountdown();
 
     setTimeout(function() {
-        window.location.href = '/login';
+        window.location.href = '/';
     }, 5000);
 </script>
 </body>
