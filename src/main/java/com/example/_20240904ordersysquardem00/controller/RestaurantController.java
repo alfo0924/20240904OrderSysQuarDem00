@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/restaurants")
 public class RestaurantController {
@@ -56,4 +58,41 @@ public class RestaurantController {
         restaurantService.deleteRestaurant(id);
         return "redirect:/restaurant";
     }
+
+    // API - get all restaurant
+    @GetMapping("/api")
+    @ResponseBody
+    public List<Restaurant> getRestaurantsApi() {
+        return restaurantService.getAllRestaurants();
+    }
+
+    // API - get single data from restaurant
+    @GetMapping("/api/{id}")
+    @ResponseBody
+    public Restaurant getRestaurantApi(@PathVariable Long id) {
+        return restaurantService.getRestaurantById(id).orElse(null);
+    }
+
+    // API - create restaurant
+    @PostMapping("/api")
+    @ResponseBody
+    public Restaurant createRestaurantApi(@RequestBody Restaurant restaurant) {
+        return restaurantService.saveRestaurant(restaurant);
+    }
+
+    // API - update restaurant
+    @PutMapping("/api/{id}")
+    @ResponseBody
+    public Restaurant updateRestaurantApi(@PathVariable Long id, @RequestBody Restaurant restaurant) {
+        restaurant.setRestaurantId(id);
+        return restaurantService.saveRestaurant(restaurant);
+    }
+
+    // API - delete restaurant
+    @DeleteMapping("/api/{id}")
+    @ResponseBody
+    public void deleteRestaurantApi(@PathVariable Long id) {
+        restaurantService.deleteRestaurant(id);
+    }
+
 }

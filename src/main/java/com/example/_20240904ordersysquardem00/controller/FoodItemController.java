@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/food-items")
 public class FoodItemController {
@@ -62,4 +64,39 @@ public class FoodItemController {
         foodItemService.deleteFoodItem(id);
         return "redirect:/food-items";
     }
+
+    // API - get all foodItems
+    @GetMapping("/api")
+    @ResponseBody
+    public List<FoodItem> getFoodItemsApi() {
+        return foodItemService.getAllFoodItems();
+    }
+    // API - get a single data from foodItems
+    @GetMapping("/api/{id}")
+    @ResponseBody
+    public FoodItem getFoodItemApi(@PathVariable String id) {
+        return foodItemService.getFoodItemById(id).orElse(null);
+    }
+
+    // API - create foodItem
+    @PostMapping("/api")
+    @ResponseBody
+    public FoodItem createFoodItemApi(@RequestBody FoodItem foodItem) {
+        return foodItemService.saveFoodItem(foodItem);
+    }
+    // API - update foodItem
+    @PutMapping("/api/{id}")
+    @ResponseBody
+    public FoodItem updateFoodItemApi(@PathVariable String id, @RequestBody FoodItem foodItem) {
+        foodItem.setItemsId(id);
+        return foodItemService.saveFoodItem(foodItem);
+    }
+    // API - delete foodItem
+    @DeleteMapping("/api/{id}")
+    @ResponseBody
+    public void deleteFoodItemApi(@PathVariable String id) {
+        foodItemService.deleteFoodItem(id);
+    }
+
+
 }

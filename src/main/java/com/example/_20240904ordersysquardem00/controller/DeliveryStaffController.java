@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/delivery-staff")
 public class DeliveryStaffController {
@@ -56,4 +58,42 @@ public class DeliveryStaffController {
         deliveryStaffService.deleteDeliveryStaff(id);
         return "redirect:/delivery-staff";
     }
+
+    // API - get all deliveryStaff
+    @GetMapping("/api")
+    @ResponseBody
+    public List<DeliveryStaff> getDeliveryStaffApi() {
+        return deliveryStaffService.getAllDeliveryStaff();
+    }
+
+    // API - get single data of deliveryStaff
+    @GetMapping("/api/{id}")
+    @ResponseBody
+    public DeliveryStaff getDeliveryStaffApi(@PathVariable String id) {
+        return deliveryStaffService.getDeliveryStaffById(id).orElse(null);
+    }
+
+    // API - create deliveryStaff
+    @PostMapping("/api")
+    @ResponseBody
+    public DeliveryStaff createDeliveryStaffApi(@RequestBody DeliveryStaff deliveryStaff) {
+        return deliveryStaffService.saveDeliveryStaff(deliveryStaff);
+    }
+
+    // API - update deliveryStaff
+    @PutMapping("/api/{id}")
+    @ResponseBody
+    public DeliveryStaff updateDeliveryStaffApi(@PathVariable String id, @RequestBody DeliveryStaff deliveryStaff) {
+        deliveryStaff.setDeliveryId(id);
+        return deliveryStaffService.saveDeliveryStaff(deliveryStaff);
+    }
+
+    // API - delete deliveryStaff
+    @DeleteMapping("/api/{id}")
+    @ResponseBody
+    public void deleteDeliveryStaffApi(@PathVariable String id) {
+        deliveryStaffService.deleteDeliveryStaff(id);
+    }
+
+
 }

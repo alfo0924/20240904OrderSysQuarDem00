@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/orders")
@@ -80,4 +81,41 @@ public class OrderController {
         orderService.deleteOrder(id);
         return "redirect:/orders";
     }
+
+    // API - get all orders
+    @GetMapping("/api")
+    @ResponseBody
+    public List<Order> getOrdersApi() {
+        return orderService.getAllOrders();
+    }
+
+    // API - get single data from orders
+    @GetMapping("/api/{id}")
+    @ResponseBody
+    public Order getOrderApi(@PathVariable String id) {
+        return orderService.getOrderById(id).orElse(null);
+    }
+
+    // API - create order
+    @PostMapping("/api")
+    @ResponseBody
+    public Order createOrderApi(@RequestBody Order order) {
+        return orderService.saveOrder(order);
+    }
+
+    // API - update order
+    @PutMapping("/api/{id}")
+    @ResponseBody
+    public Order updateOrderApi(@PathVariable String id, @RequestBody Order order) {
+        order.setOrderId(id);
+        return orderService.saveOrder(order);
+    }
+
+    // API - delete order
+    @DeleteMapping("/api/{id}")
+    @ResponseBody
+    public void deleteOrderApi(@PathVariable String id) {
+        orderService.deleteOrder(id);
+    }
+
 }

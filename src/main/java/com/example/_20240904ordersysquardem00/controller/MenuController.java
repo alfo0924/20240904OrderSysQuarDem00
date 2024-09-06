@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/menus")
 public class MenuController {
@@ -62,4 +64,39 @@ public class MenuController {
         menuService.deleteMenu(id);
         return "redirect:/menus";
     }
+
+    // API - get all menus
+    @GetMapping("/api")
+    @ResponseBody
+    public List<Menu> getMenusApi() {
+        return menuService.getAllMenus();
+    }
+
+    // API - get a single data from menus
+    @GetMapping("/api/{id}")
+    @ResponseBody
+    public Menu getMenuApi(@PathVariable String id) {
+        return menuService.getMenuById(id).orElse(null);
+    }
+    // API - create menu
+    @PostMapping("/api")
+    @ResponseBody
+    public Menu createMenuApi(@RequestBody Menu menu) {
+        return menuService.saveMenu(menu);
+    }
+
+    // API - update menu
+    @PutMapping("/api/{id}")
+    @ResponseBody
+    public Menu updateMenuApi(@PathVariable String id, @RequestBody Menu menu) {
+        menu.setMenuId(id);
+        return menuService.saveMenu(menu);
+    }
+    // API - delete menu
+    @DeleteMapping("/api/{id}")
+    @ResponseBody
+    public void deleteMenuApi(@PathVariable String id) {
+        menuService.deleteMenu(id);
+    }
+
 }

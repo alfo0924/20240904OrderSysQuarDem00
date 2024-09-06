@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/order-items")
 public class OrderItemController {
@@ -68,4 +70,45 @@ public class OrderItemController {
         orderItemService.deleteOrderItem(id);
         return "redirect:/order-items";
     }
+
+    // API - get all OrderItems
+    @GetMapping("/api")
+    @ResponseBody
+    public List<OrderItem> getOrderItemsApi() {
+        return orderItemService.getAllOrderItems();
+    }
+
+
+    // API - get single data from OrderItems
+    @GetMapping("/api/{id}")
+    @ResponseBody
+    public OrderItem getOrderItemApi(@PathVariable String id) {
+        return orderItemService.getOrderItemById(id).orElse(null);
+    }
+
+
+    // API - create orderItem
+    @PostMapping("/api")
+    @ResponseBody
+    public OrderItem createOrderItemApi(@RequestBody OrderItem orderItem) {
+        return orderItemService.saveOrderItem(orderItem);
+    }
+
+    // API - update orderItem
+    @PutMapping("/api/{id}")
+    @ResponseBody
+    public OrderItem updateOrderItemApi(@PathVariable String id, @RequestBody OrderItem orderItem) {
+        orderItem.setOrderItemsId(id);
+        return orderItemService.saveOrderItem(orderItem);
+    }
+    // API - delete orderItem
+    @DeleteMapping("/api/{id}")
+    @ResponseBody
+    public void deleteOrderItemApi(@PathVariable String id) {
+        orderItemService.deleteOrderItem(id);
+    }
+
+
+
+
 }

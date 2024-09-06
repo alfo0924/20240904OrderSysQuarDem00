@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {
@@ -56,4 +58,46 @@ public class CustomerController {
         customerService.deleteCustomer(id);
         return "redirect:/customers";
     }
+
+
+
+    // API - get all customers
+    @GetMapping("/api")
+    @ResponseBody
+    public List<Customer> getCustomersApi() {
+        return customerService.getAllCustomers();
+    }
+
+    // API - get a single data of customer
+    @GetMapping("/api/{id}")
+    @ResponseBody
+    public Customer getCustomerApi(@PathVariable Long id) {
+        return customerService.getCustomerById(id).orElse(null);
+    }
+
+    // API - create customer
+    @PostMapping("/api")
+    @ResponseBody
+    public Customer createCustomerApi(@RequestBody Customer customer) {
+        return customerService.saveCustomer(customer);
+    }
+
+    // API - update customer
+    @PutMapping("/api/{id}")
+    @ResponseBody
+    public Customer updateCustomerApi(@PathVariable Long id, @RequestBody Customer customer) {
+        customer.setCustomerId(id);
+        return customerService.saveCustomer(customer);
+    }
+
+    // API - delete customer
+    @DeleteMapping("/api/{id}")
+    @ResponseBody
+    public void deleteCustomerApi(@PathVariable Long id) {
+        customerService.deleteCustomer(id);
+    }
+
+
+
+
 }

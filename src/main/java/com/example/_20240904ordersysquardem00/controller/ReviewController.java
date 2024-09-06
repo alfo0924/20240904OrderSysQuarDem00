@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/reviews")
 public class ReviewController {
@@ -80,4 +82,42 @@ public class ReviewController {
         reviewService.deleteReview(id);
         return "redirect:/reviews";
     }
+
+    // API - get all reviews
+    @GetMapping("/api")
+    @ResponseBody
+    public List<Review> getReviewsApi() {
+        return reviewService.getAllReviews();
+    }
+
+
+    // API - get single data from reviews
+    @GetMapping("/api/{id}")
+    @ResponseBody
+    public Review getReviewApi(@PathVariable String id) {
+        return reviewService.getReviewById(id).orElse(null);
+    }
+
+    // API - create review
+    @PostMapping("/api")
+    @ResponseBody
+    public Review createReviewApi(@RequestBody Review review) {
+        return reviewService.saveReview(review);
+    }
+
+    // API - update review
+    @PutMapping("/api/{id}")
+    @ResponseBody
+    public Review updateReviewApi(@PathVariable String id, @RequestBody Review review) {
+        review.setReviewId(id);
+        return reviewService.saveReview(review);
+    }
+
+    // API - delete review
+    @DeleteMapping("/api/{id}")
+    @ResponseBody
+    public void deleteReviewApi(@PathVariable String id) {
+        reviewService.deleteReview(id);
+    }
+
 }
