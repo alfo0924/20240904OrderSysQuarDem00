@@ -9,19 +9,8 @@
 <body>
 <header>
     <h1>餐廳詳情</h1>
-    <nav>
-        <ul>
-            <li><a href="/">主頁</a></li>
-            <li><a href="/customers">客戶</a></li>
-            <li><a href="/restaurants">餐廳</a></li>
-            <li><a href="/orders">訂單</a></li>
-            <li><a href="/order-items">訂單列表</a></li>
-            <li><a href="/delivery-staff">外送員</a></li>
-            <li><a href="/menus">菜單</a></li>
-            <li><a href="/food-items">菜品</a></li>
-            <li><a href="/reviews">評價</a></li>
-        </ul>
-    </nav>
+    <!-- 引用導航欄片段 -->
+    <nav th:replace="~{fragments :: navbar}"></nav>
 </header>
 <main>
     <div th:if="${restaurant != null}">

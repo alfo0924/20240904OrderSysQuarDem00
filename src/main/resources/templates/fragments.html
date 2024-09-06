@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+<!-- 導航欄片段 -->
+<nav th:fragment="navbar">
+    <ul>
+        <li><a href="/index">主頁</a></li>
+        <li><a href="/customers">客戶</a></li>
+        <li><a href="/restaurants">餐廳</a></li>
+        <li><a href="/orders">訂單</a></li>
+        <li><a href="/order-items">訂單列表</a></li>
+        <li><a href="/delivery-staff">外送員</a></li>
+        <li><a href="/menus">菜單</a></li>
+        <li><a href="/food-items">菜品</a></li>
+        <li><a href="/reviews">評價</a></li>
+    </ul>
+</nav>
+</body>
+</html>

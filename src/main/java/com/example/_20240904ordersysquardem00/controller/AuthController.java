@@ -15,7 +15,7 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String login() {
         return "login";
     }
@@ -43,8 +43,8 @@ public class AuthController {
         return "login-success";
     }
 
-    @GetMapping("/index")
-    public String index() {
-        return "index";
-    }
+//    @GetMapping("/index")
+//    public String index() {
+//        return "index";
+//    }
 }
