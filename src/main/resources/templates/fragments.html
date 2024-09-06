@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Fragments</title>
@@ -17,6 +17,11 @@
         <li><a href="/menus">菜單</a></li>
         <li><a href="/food-items">菜品</a></li>
         <li><a href="/reviews">評價</a></li>
+        <li sec:authorize="isAuthenticated()"  style="margin: 0;padding: 0; ">
+            <form th:action="@{/logout}" method="post" style="margin: 0px 2px 0px 10px ;padding: 5px; ">
+                <button type="submit" style="margin: 0;padding: 0; " >登出</button>
+            </form>
+        </li>
     </ul>
 </nav>
 </body>
