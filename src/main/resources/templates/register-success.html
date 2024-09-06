@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>註冊成功</title>
+    <meta http-equiv="refresh" content="5;url=/login" />
+</head>
+<body>
+<h2>註冊成功</h2>
+<p th:text="${message}">註冊成功！5秒後將自動跳轉到登入頁面。</p>
+<p>如果沒有自動跳轉，請<a href="/login">點擊這裡</a>。</p>
+
+<script>
+    setTimeout(function() {
+        window.location.href = '/login';
+    }, 5000);
+</script>
+</body>
+</html>

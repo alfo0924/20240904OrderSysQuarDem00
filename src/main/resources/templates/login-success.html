@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>登入成功</title>
+    <meta http-equiv="refresh" content="5;url=/index" />
+</head>
+<body>
+<h2>登入成功</h2>
+<p>歡迎回來！5秒後將自動跳轉到首頁。</p>
+<p>如果沒有自動跳轉，請<a href="/index">點擊這裡</a>。</p>
+
+<script>
+    setTimeout(function() {
+        window.location.href = '/index';
+    }, 5000);
+</script>
+</body>
+</html>
