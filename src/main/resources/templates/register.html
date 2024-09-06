@@ -1,27 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-TW">
 <head>
-    <title>註冊</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外送系統 - 註冊</title>
+    <style th:replace="~{fragmentsStyle :: loginStyle }" ></style>
 </head>
 <body>
-<h2>註冊新用戶</h2>
-<form th:action="@{/register}" th:object="${user}" method="post">
-    <div>
-        <label for="username">用戶名:</label>
-        <input type="text" id="username" th:field="*{username}" required>
-    </div>
-    <div>
-        <label for="email">電子郵件:</label>
-        <input type="email" id="email" th:field="*{email}" required>
-    </div>
-    <div>
-        <label for="password">密碼:</label>
-        <input type="password" id="password" th:field="*{password}" required>
-    </div>
-    <div>
-        <input type="submit" value="註冊">
-    </div>
-</form>
-<a th:href="@{/login}">返回登入</a>
+<header>
+    <h1>外送系統</h1>
+</header>
+<main>
+    <h2>註冊新用戶</h2>
+    <form th:action="@{/register}" th:object="${user}" method="post" class="register-form">
+        <div>
+            <label for="username">用戶名:</label>
+            <input type="text" id="username" th:field="*{username}" required>
+        </div>
+        <div>
+            <label for="email">電子郵件:</label>
+            <input type="email" id="email" th:field="*{email}" required>
+        </div>
+        <div>
+            <label for="password">密碼:</label>
+            <input type="password" id="password" th:field="*{password}" required>
+        </div>
+        <div>
+            <input type="submit" value="註冊" class="button">
+        </div>
+    </form>
+    <p>已有帳號? <a href="/login">返回登入</a></p>
+</main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
 </body>
 </html>

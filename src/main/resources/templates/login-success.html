@@ -1,15 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-TW">
 <head>
-    <title>登入成功</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外送系統 - 登入成功</title>
+    <style th:replace="~{fragmentsStyle :: loginStyle }" ></style>
     <meta http-equiv="refresh" content="5;url=/index" />
 </head>
 <body>
-<h2>登入成功</h2>
-<p>歡迎回來！5秒後將自動跳轉到首頁。</p>
-<p>如果沒有自動跳轉，請<a href="/index">點擊這裡</a>。</p>
-
+<header>
+    <h1>外送系統</h1>
+</header>
+<main>
+    <h2>登入成功</h2>
+    <div class="success-message">
+        <p>歡迎回來！<span id="countdown">5</span>秒後將自動跳轉到首頁。</p>
+        <p>如果沒有自動跳轉，請<a href="/index">點擊這裡</a>。</p>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 外送系統. All rights reserved.</p>
+</footer>
 <script>
+    let seconds = 5;
+    const countdownElement = document.getElementById('countdown');
+
+    function updateCountdown() {
+        countdownElement.textContent = seconds;
+        if (seconds > 0) {
+            seconds--;
+            setTimeout(updateCountdown, 1000);
+        }
+    }
+
+    updateCountdown();
+
     setTimeout(function() {
         window.location.href = '/index';
     }, 5000);

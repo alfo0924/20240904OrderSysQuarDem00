@@ -188,3 +188,18 @@ input[type="text"], input[type="number"] {
         padding: 5px 0;
     }
 }
+
+.login-form, .register-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.success-message {
+    text-align: center;
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+    color: #3c763d;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
