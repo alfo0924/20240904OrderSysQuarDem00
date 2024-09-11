@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -26,7 +27,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home", "/register", "/register-success").permitAll()
+                        .requestMatchers("/", "/home", "/register", "/register-success", "/css/**", "/js/**").permitAll()
+                        .requestMatchers("/api/**").permitAll() // 允许所有API请求，您可能需要根据实际情况调整
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -36,7 +38,19 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/login-success", true)
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout((logout) -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/?logout")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
+                )
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/api/**") // 对API请求禁用CSRF保护
+                )
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedPage("/access-denied")
+                );
 
         return http.build();
     }
