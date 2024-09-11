@@ -28,7 +28,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/", "/home", "/register", "/register-success", "/css/**", "/js/**").permitAll()
-                        .requestMatchers("/api/**").permitAll() // 允许所有API请求，您可能需要根据实际情况调整
+                        .requestMatchers("/api/**").authenticated() // 需要认证才能访问API
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

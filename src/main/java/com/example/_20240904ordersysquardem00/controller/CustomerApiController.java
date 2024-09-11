@@ -5,12 +5,14 @@ import com.example._20240904ordersysquardem00.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/customers")
+@PreAuthorize("isAuthenticated()") // 确保所有方法都需要认证
 public class CustomerApiController {
 
     @Autowired
